@@ -1,0 +1,13 @@
+.ur-header {
+  .uk-navbar-item {
+    .ur-notification {
+      border-right: 1px solid #ccc;
+      .uk-badge {
+        min-width: 12px;
+        height: 12px;
+        right: 30%;
+        top: 10%;
+      }
+    }
+  }
+}
