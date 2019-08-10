@@ -1,20 +1,20 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Router, Route } from 'react-router-dom'
 
-import { history } from './_helpers';
-import { alertActions } from './_actions';
-import { PrivateRoute } from './components/privateRoute';
-import Home from './pages/home';
-import { Login, Register } from './pages/auth';
+import { history } from './_helpers'
+import { PrivateRoute } from './components/privateRoute'
+import { StudentHome, OfficerHome } from './pages/home'
+import { Login, Register } from './pages/auth'
+import Request from './pages/request'
+import RequestPending from './pages/pending'
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    history.listen((location, action) => {
-      this.props.clearAlerts();
-    });
+    this.state = {
+      userRoles: JSON.parse(localStorage.getItem('user'))
+    }
 
     if( typeof window !== 'undefined') {
       const UIkit = require('uikit')
@@ -25,18 +25,36 @@ class App extends React.Component {
     }
   }
 
+  // componentDidMount() {
+  //   let user = JSON.parse(localStorage.getItem('user'))
+
+  //   if( user ) this.setState({ userRoles: user.creds.user.roles})
+  // }
+
   render() {
-    const { alert } = this.props;
+    const { userRoles } = this.state
+
     return (
       <div className="ur-page uk-section-muted">
-        {alert.message &&
+        {/* {alert.message &&
           <div className={`uk-position-top uk-position-z-index uk-${alert.type}`} data-uk-alert>
             <button className="uk-alert-close" data-uk-close/>
             <p>{alert.message}</p>
           </div>
-        }
+        } */}
         <Router history={history}>
-          <PrivateRoute exact path="/" component={Home} />
+          { userRoles && userRoles.creds.user.roles.length > 0 ?
+            userRoles.creds.user.roles.findIndex( role => role.name === 'STUDENT') !== -1 ?
+            <React.Fragment>
+              <PrivateRoute exact path="/" component={StudentHome} />
+              <PrivateRoute path="/requests/:id" component={Request} />
+            </React.Fragment> :
+            <React.Fragment>
+              <PrivateRoute exact path="/" component={OfficerHome} />
+              <PrivateRoute path="/requests/:id" component={RequestPending} />
+            </React.Fragment>
+            : null
+          }
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
         </Router>
@@ -45,14 +63,4 @@ class App extends React.Component {
   }
 }
 
-function mapState(state) {
-    const { alert } = state;
-    return { alert };
-}
-
-const actionCreators = {
-    clearAlerts: alertActions.clear
-};
-
-const connectedApp = connect(mapState, actionCreators)(App);
-export { connectedApp as App };
+export { App }

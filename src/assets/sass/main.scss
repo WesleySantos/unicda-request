@@ -11,3 +11,12 @@
 
 @import './components/form';
 @import './components/navbar';
+
+.uk-padding-xsmall {
+  padding: 5px 10px;
+}
+
+.uk-alert-muted {
+  background: #cccccc;
+  color: #999999;
+}
