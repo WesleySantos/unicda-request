@@ -16,7 +16,25 @@ const getFormValues = async id => {
   .then( resp => resp.json())
 }
 
+const Approve = async id => {
+  return await fetch(`http://unicdarequests.herokuapp.com/api/request/approve/${id}`, {
+    method: 'POST',
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+  })
+  .then( resp => resp.json())
+}
+
+const Disapprove = async id => {
+  return await fetch(`http://unicdarequests.herokuapp.com/api/request/disapprove/${id}`, {
+    method: 'POST',
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+  })
+  .then( resp => resp.json())
+}
+
 export {
   getMeRequestsPending,
-  getFormValues
+  getFormValues,
+  Approve,
+  Disapprove
 }
