@@ -49,10 +49,7 @@ class App extends React.Component {
               <PrivateRoute exact path="/" component={StudentHome} />
               <PrivateRoute path="/requests/:id" component={Request} />
             </React.Fragment> :
-            <React.Fragment>
-              <PrivateRoute exact path="/" component={OfficerHome} />
-              <PrivateRoute path="/requests/:id" component={RequestPending} />
-            </React.Fragment>
+            <PrivateRoute exact path="/" component={OfficerHome} />
             : null
           }
           <Route path="/login" component={Login} />
