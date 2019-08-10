@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dash } from '../../layout'
-import { Input } from '../../components/inputs'
+import { Input } from '../../components/inputs/default'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import 'moment/locale/es'
