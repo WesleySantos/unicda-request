@@ -6,7 +6,6 @@ import { PrivateRoute } from './components/privateRoute'
 import { StudentHome, OfficerHome } from './pages/home'
 import { Login, Register } from './pages/auth'
 import Request from './pages/request'
-import RequestPending from './pages/pending'
 
 class App extends React.Component {
   constructor(props) {
