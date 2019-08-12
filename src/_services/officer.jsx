@@ -1,7 +1,7 @@
 import { authHeader } from "../_helpers"
 
 const getMeRequestsPending = async (pageNum = 1, pageSize = 10) => {
-  return await fetch(`http://unicdarequests.herokuapp.com/api/request/me/pending?pageNum=${pageNum}&pageSize=${pageSize}`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/request/me/pending?pageNum=${pageNum}&pageSize=${pageSize}`, {
     method: 'GET',
     headers: authHeader(),
   })
@@ -9,7 +9,7 @@ const getMeRequestsPending = async (pageNum = 1, pageSize = 10) => {
 }
 
 const getFormValues = async id => {
-  return await fetch(`http://unicdarequests.herokuapp.com/api/request/formValues/${id}`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/request/formValues/${id}`, {
     method: 'GET',
     headers: authHeader(),
   })
@@ -17,7 +17,7 @@ const getFormValues = async id => {
 }
 
 const Approve = async id => {
-  return await fetch(`http://unicdarequests.herokuapp.com/api/request/approve/${id}`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/request/approve/${id}`, {
     method: 'POST',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
   })
@@ -25,7 +25,7 @@ const Approve = async id => {
 }
 
 const Disapprove = async id => {
-  return await fetch(`http://unicdarequests.herokuapp.com/api/request/disapprove/${id}`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/request/disapprove/${id}`, {
     method: 'POST',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
   })

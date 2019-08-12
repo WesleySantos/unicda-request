@@ -1,5 +1,5 @@
 const setRegister = async user => {
-  return await fetch(`http://unicdarequests.herokuapp.com/api/auth/signUp`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/auth/signUp`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user)
@@ -8,7 +8,7 @@ const setRegister = async user => {
 
 const setLogin = async user => {
 
-  return await fetch(`http://unicdarequests.herokuapp.com/api/auth/signIn`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/auth/signIn`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user)

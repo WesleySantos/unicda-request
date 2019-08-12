@@ -1,7 +1,7 @@
 import { authHeader } from "../_helpers"
 
 const getRequests = async (pageNum = 1, pageSize = 10) => {
-  return await fetch(`http://unicdarequests.herokuapp.com/api/request?pageNum=${pageNum}&pageSize=${pageSize}`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/request?pageNum=${pageNum}&pageSize=${pageSize}`, {
     method: 'GET',
     headers: authHeader(),
   })
@@ -10,7 +10,7 @@ const getRequests = async (pageNum = 1, pageSize = 10) => {
 
 const getRequestForm = async id => {
 
-  return await fetch(`http://unicdarequests.herokuapp.com/api/request/${id}/getForm`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/request/${id}/getForm`, {
     method: 'GET',
     headers: authHeader()
   })
@@ -18,21 +18,21 @@ const getRequestForm = async id => {
 }
 
 const getRequestsCreated = async (pageNum = 1, pageSize = 10) => {
-  return await fetch(`http://unicdarequests.herokuapp.com/api/request/me/created?pageNum=${pageNum}&pageSize=${pageSize}`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/request/me/created?pageNum=${pageNum}&pageSize=${pageSize}`, {
     method: 'GET',
     headers: authHeader()
   }).then( res => res.json())
 }
 
 const getRequestHistory = async _id => {
-  return await fetch(`http://unicdarequests.herokuapp.com/api/request/${_id}/history`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/request/${_id}/history`, {
     method: 'GET',
     headers: authHeader()
   }).then( res => res.json())
 }
 
 const setRequestCreated = async (form, inputs) => {
-  return await fetch(`http://unicdarequests.herokuapp.com/api/request/create/${form}`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/request/create/${form}`, {
     method: 'POST',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
     body: JSON.stringify(inputs)
@@ -40,7 +40,7 @@ const setRequestCreated = async (form, inputs) => {
 }
 
 const deleteRequestCreated = async id => {
-  return await fetch(`http://unicdarequests.herokuapp.com/api/request/remove/${id}`, {
+  return await fetch(`https://unicdarequests.herokuapp.com/api/request/remove/${id}`, {
     method: 'DELETE',
     headers: authHeader()
   })
