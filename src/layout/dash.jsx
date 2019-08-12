@@ -29,7 +29,7 @@ class Dash extends React.Component {
                     <ul className="uk-navbar-nav">
                       <li><Link to="/">Home</Link></li>
                       {/* <li><Link to="/requests">Requests</Link></li> */}
-                      <li><Link to="/history">Historial</Link></li>
+                      <li><Link to="/history">Record</Link></li>
                       {/* <li><Link to="/messages">Messages</Link></li> */}
                     </ul>
                   </div>
@@ -46,12 +46,12 @@ class Dash extends React.Component {
 
                         <div className="uk-navbar-dropdown" style={{width: '400px'}}>
                           <dl className="uk-description-list uk-description-list-divider">
-                            <dt>Description term</dt>
+                            {/* <dt>Description term</dt>
                             <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</dd>
                             <dt>Description term</dt>
                             <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</dd>
                             <dt>Description term</dt>
-                            <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</dd>
+                            <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</dd> */}
                           </dl>
                         </div>
                       </li>
@@ -82,7 +82,7 @@ class Dash extends React.Component {
         </div>
         <main>{children}</main>
         <div className="ur-footer uk-padding uk-text-center">
-          <small>Copyright © 2019 Dominico Americano. Todos los derechos reservados.</small>
+          <small>Copyright © 2019 American Dominican. All rights reserved.</small>
         </div>
       </React.Fragment>
     );

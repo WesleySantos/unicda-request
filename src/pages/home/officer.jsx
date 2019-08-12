@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Dash } from '../../layout'
+import React, { useEffect, useState, Fragment } from 'react'
 import { getMeRequestsPending, Approve, Disapprove } from '../../_services/officer';
 import moment from 'moment'
-import 'moment/locale/es'
-import { Link } from 'react-router-dom'
+// import 'moment/locale/en'
 
-moment.locale('es')
+// moment.locale('en')
 
 const OfficerHome = () => {
   const [requestsPending, updateRequestsPending] = useState([])
@@ -28,7 +26,7 @@ const OfficerHome = () => {
       Approve(step)
       .then( res => {
         updateAction(true)
-        updateActionMessage('Solicitud aprovada con exito.')
+        updateActionMessage('Application approved successfully.')
         getMeRequestsPending()
         .then( res => updateRequestsPending(res))
       })
@@ -36,7 +34,7 @@ const OfficerHome = () => {
       Disapprove(step)
       .then( res => {
         updateAction(true)
-        updateActionMessage('Solicitud rechazada con exito.')
+        updateActionMessage('Application rejected successfully.')
         getMeRequestsPending()
         .then( res => updateRequestsPending(res))
       })
@@ -44,7 +42,7 @@ const OfficerHome = () => {
   }
 
   return(
-    <Dash>
+    <Fragment>
       <div className="uk-section-small">
       { action ? <div className="uk-alert-success uk-position-bottom uk-text-center" uk-alert="true">
           <a className="uk-alert-close" uk-close="true"></a>
@@ -52,17 +50,17 @@ const OfficerHome = () => {
         </div>
       : null }
           <div className="uk-container">
-            <h1 className="uk-h2 uk-text-bold uk-text-capitalize">Solicitudes pendientes</h1>
+            <h1 className="uk-h2 uk-text-bold uk-text-capitalize">Awaiting requests</h1>
             <div className="uk-overflow-auto">
               { requestsPending.length > 0 ? <table className="uk-table uk-table-middle uk-table-divider">
                 <thead>
                   <tr>
-                    <th className="">Usuario</th>
-                    <th className="">Solicitud</th>
-                    <th className="">Descripción</th>
-                    <th className="">Estado</th>
-                    <th className="">Fecha</th>
-                    <th className="">Acción</th>
+                    <th className="">User</th>
+                    <th className="">Request</th>
+                    <th className="">Description</th>
+                    <th className="">State</th>
+                    <th className="">Date</th>
+                    <th className="">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -74,24 +72,24 @@ const OfficerHome = () => {
                       </td>
                       <td className="uk-table-truncate">{ pending.requestRecord.request.name }</td>
                       <td className="uk-text-nowrap">{ pending.requestRecord.request.description }</td>
-                      <td className="uk-text-nowrap"><span className="uk-badge">{ pending.status === 'APPROVE_PENDING' ? 'Pendiente' : 'Aprobada' }</span></td>
+                      <td className="uk-text-nowrap"><span className="uk-badge">{ pending.status === 'APPROVE_PENDING' ? 'Pending' : pending.status === 'CANCELLED' ? 'Canceled' : 'Approved' }</span></td>
                       <td className="uk-text-nowrap"><span className="">{ moment(pending.createdAt, 'YYYY-MM-DD').fromNow() }</span></td>
                       <td>
                         <select className="uk-select" value={stepStatus} onChange={ (e) => handleEstatus(e.target) } data-step={pending._id}>
-                          <option value="" disabled>Seleccionar una acción</option>
-                          <option value="rechazar">Rechazar</option>
-                          <option value="aceptar">Aceptar</option>
+                          <option value="" disabled>Select an action</option>
+                          <option value="rechazar">Refuse</option>
+                          <option value="aceptar">Accept</option>
                         </select>
                       </td>
                     </tr>
                   )}
                 </tbody>
               </table>
-              : <div className="uk-alert-warning uk-placeholder uk-text-center" style={{ background: 'antiquewhite'}}>No tienes ninguna solicitud pendiente </div> }
+              : <div className="uk-alert-warning uk-placeholder uk-text-center" style={{ background: 'antiquewhite'}}>You have no pending request</div> }
             </div>
           </div>
         </div>
-    </Dash>
+    </Fragment>
   )
 }
 

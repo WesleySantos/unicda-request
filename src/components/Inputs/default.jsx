@@ -4,7 +4,7 @@ const Input = (props) => {
 
   return (
     <div className="uk-margin">
-      <label className="uk-form-label" forHtml={ props.id }>{ props.label }</label>
+      <label className="uk-form-label" forhtml={ props.id }>{ props.label }</label>
       <div className="uk-form-controls">
         { props.type === 'BOOLEAN' ?
           <div className="uk-margin uk-grid-small uk-child-width-auto uk-grid">

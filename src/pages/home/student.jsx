@@ -1,5 +1,4 @@
 import React from 'react'
-import { Dash } from '../../layout'
 import Input from '../../components/inputs/default'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
@@ -25,11 +24,22 @@ class StudentHome extends React.Component {
     this.handleRequest = this.handleRequest.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.modalClose = this.modalClose.bind(this)
   }
+
   componentDidMount() {
     let self = this
     getRequests().then( res => self.setState({requests: res}) )
     getRequestsCreated().then( res => self.setState({requestsCreated: res}) )
+  }
+
+  modalClose(e) {
+    let self = this
+    e.preventDefault()
+
+    self.setState({ requestForm: [] })
+
+    window.UIkit.modal('#modal-request').hide();
   }
 
   handleChange(e) {
@@ -84,21 +94,20 @@ class StudentHome extends React.Component {
   render() {
     const { formActive, requests, requestForm, requestsCreated, loading } = this.state
 
-    console.log(this.state);
     return(
-      <Dash>
+      <React.Fragment>
         <div className="uk-section">
           <div className="uk-container">
-            <div className="uk-position-relative uk-visible-toggle uk-light" tabIndex="-1" uk-slideshow="max-height: 300; autoplay: true; animation: fade; autoplay-interval: 2000">
+            <div className="uk-position-relative uk-visible-toggle uk-light" tabIndex="-1" uk-slideshow="max-height: 300; autoplay: true; animation: fade; autoplay-interval: 4000">
               <ul className="uk-slideshow-items">
                   <li>
-                      <img src="http://2.bp.blogspot.com/_8w811x5iykE/TFa9PwjmGjI/AAAAAAAAAAk/SjNyDTIStHk/s1600/top.jpg" alt="" uk-cover="true" />
+                      <img src={ require('../../assets/img/img-4@2x.jpg') } alt="" uk-cover="true" />
                   </li>
                   <li>
-                      <img src="https://i2.wp.com/vumagbucket.s3.amazonaws.com/wp-content/uploads/2018/04/19123935/rela.jpg?fit=1404%2C672" alt="" uk-cover="true" />
+                      <img src={ require('../../assets/img/img-2@2x.jpg') } alt="" uk-cover="true" />
                   </li>
                   <li>
-                      <img src="https://i0.wp.com/eljacaguero.com/wp-content/uploads/2018/04/UNICDA.jpg?fit=1500%2C722&ssl=1" alt="" uk-cover="true" />
+                      <img src={ require('../../assets/img/img-1@2x.jpg') } alt="" uk-cover="true" />
                   </li>
               </ul>
             </div>
@@ -107,7 +116,7 @@ class StudentHome extends React.Component {
         <div className="uk-section">
           <div className="uk-container">
             <div>
-              <h1 className="uk-h2 uk-text-bold uk-text-capitalize">Solicitudes</h1>
+              <h1 className="uk-h2 uk-text-bold uk-text-capitalize">Requests</h1>
             </div>
             <div className="uk-child-width-1-3@s" data-uk-grid>
               { requests && requests.map( (item, idx) =>
@@ -132,16 +141,16 @@ class StudentHome extends React.Component {
 
         <div className="uk-section-small">
           <div className="uk-container">
-            <h1 className="uk-h2 uk-text-bold uk-text-capitalize">Solicitudes pendientes</h1>
+            <h1 className="uk-h2 uk-text-bold uk-text-capitalize">Awaiting requests</h1>
             <div className="uk-overflow-auto">
               { requestsCreated.length > 0 ? <table className="uk-table uk-table-middle uk-table-divider">
                 <thead>
                   <tr>
-                    <th className="uk-table-shrink">Usuario</th>
-                    <th className="">Solicitud</th>
-                    <th className="">Descripción</th>
-                    <th className="uk-table-shrink">Estado</th>
-                    <th className="uk-table-shrink">Fecha</th>
+                    <th className="uk-table-shrink">User</th>
+                    <th className="">Request</th>
+                    <th className="">Description</th>
+                    <th className="uk-table-shrink">State</th>
+                    <th className="uk-table-shrink">Date</th>
                     <th className="uk-table-shrink"></th>
                   </tr>
                 </thead>
@@ -154,7 +163,7 @@ class StudentHome extends React.Component {
                       </td>
                       <td className="uk-table-truncate">{ created.request.name }</td>
                       <td className="uk-text-nowrap">{ created.request.description }</td>
-                      <td className="uk-text-nowrap"><span className="uk-badge">{ created.status === 'APPROVE_PENDING' ? 'Pendiente' : 'Aprobada' }</span></td>
+                      <td className="uk-text-nowrap"><span className={`uk-border-pill uk-padding-xsmall ${ created.status === 'APPROVE_PENDING' ? 'uk-alert-primary' : created.status === 'CANCELLED' ? 'uk-alert-danger' : created.status === 'APPROVED' ? 'uk-alert-success' : 'uk-alert-muted'}`}>{ created.status === 'APPROVE_PENDING' ? 'In process' : created.status === 'CANCELLED' ? 'Canceled' : created.status === 'APPROVED' ? 'Approved' : 'Pending' }</span></td>
                       <td className="uk-text-nowrap"><span className="">{ moment( new Date(created.createdTime), 'MM/DD/YYYY').fromNow() }</span></td>
                       <td>
                         <div className="uk-flex uk-flex-middle uk-flex-center">
@@ -174,7 +183,7 @@ class StudentHome extends React.Component {
         {/* form */}
         <div id="modal-request" className="uk-modal-full" data-uk-modal>
           <div className="uk-modal-dialog" data-uk-height-viewport>
-            <button className="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+            <button className="uk-modal-close-full uk-close-large" type="button" data-uk-close onClick={(e) => this.modalClose(e)}></button>
             <div data-uk-grid>
               <div className="uk-width-1-1@m">
                 <div className="uk-container">
@@ -210,7 +219,7 @@ class StudentHome extends React.Component {
             </div>
           </div>
         </div>
-      </Dash>
+      </React.Fragment>
     )
   }
 }

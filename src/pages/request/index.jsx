@@ -20,9 +20,9 @@ const Request = ({match, location}) => {
               <table className="uk-table uk-table-middle uk-table-divider">
                 <thead>
                   <tr>
-                    <th className="">Usuario encargado</th>
-                    <th className="">Pendiente por</th>
-                    <th className="uk-table-shrink">Estado</th>
+                    <th className="">User in charge</th>
+                    <th className="">Pending for</th>
+                    <th className="uk-table-shrink">State</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -37,7 +37,7 @@ const Request = ({match, location}) => {
                         <span className="uk-margin-small-left">{ step.reviewer.username }</span>
                       </td>
                       <td className="uk-table-truncate">{ step.requestStep.step.name }</td>
-                      <td className="uk-text-nowrap"><span className={`uk-border-pill uk-padding-xsmall ${ step.status === 'APPROVE_PENDING' ? 'uk-alert-primary' : 'uk-alert-muted'}`}>{ step.status === 'APPROVE_PENDING' ? 'En proceso' : 'Pendiente' }</span></td>
+                      <td className="uk-text-nowrap"><span className={`uk-border-pill uk-padding-xsmall ${ step.status === 'APPROVE_PENDING' ? 'uk-alert-primary' : step.status === 'CANCELLED' ? 'uk-alert-danger' : step.status === 'APPROVED' ? 'uk-alert-success' : 'uk-alert-muted'}`}>{ step.status === 'APPROVE_PENDING' ? 'In process' : step.status === 'CANCELLED' ? 'Canceled' : step.status === 'APPROVED' ? 'Approved' : 'Pending' }</span></td>
                     </tr>
                   )}
                 </tbody>

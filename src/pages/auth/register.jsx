@@ -31,7 +31,7 @@ const Register = () => {
 	return (
 		<Auth>
 			<div className="uk-flex-1 uk-padding">
-				<h1 className="uk-h2 uk-text-uppercase uk-text-bold uk-text-center uk-margin-t uk-margin-remove-bottom">Unidad requets</h1>
+				<h1 className="uk-h2 uk-text-uppercase uk-text-bold uk-text-center uk-margin-t uk-margin-remove-bottom">Unicda requests</h1>
 				<h3 className="uk-h6 uk-text-center uk-text-muted uk-margin-small-top">Please login to your account.</h3>
 				<form className="ur-form-login uk-margin-auto" name="form-login" onSubmit={handleSubmit}>
 					<div className="uk-margin">
@@ -39,7 +39,7 @@ const Register = () => {
 							<span className="uk-form-icon" uk-icon="icon: user"></span>
 							<input className={'uk-input uk-form-large' + (submitted && !username ? ' uk-form-danger' : '')} type="text" placeholder="Username" name="username" value={username} onChange={ (e) => updateUsername(e.target.value)} />
 							{submitted && !username &&
-                <div className="uk-text-danger uk-text-small">El campo usuario es requerido</div>
+                <div className="uk-text-danger uk-text-small">The user field is required</div>
            		}
 						</div>
 					</div>
@@ -48,7 +48,7 @@ const Register = () => {
 							<span className="uk-form-icon" uk-icon="icon: mail"></span>
 							<input className={'uk-input uk-form-large' + (submitted && !email ? ' uk-form-danger' : '')} type="text" placeholder="Email" name="email" value={email} onChange={ (e) => updateEmail(e.target.value)} />
 							{submitted && !email &&
-                <div className="uk-text-danger uk-text-small">El campo email es requerido</div>
+                <div className="uk-text-danger uk-text-small">The email field is required</div>
            		}
 						</div>
 					</div>
@@ -57,16 +57,16 @@ const Register = () => {
 							<span className="uk-form-icon" uk-icon="icon: lock"></span>
 							<input className={'uk-input uk-form-large' + (submitted && !password ? ' uk-form-danger' : '')} type="password" name="password" placeholder="Password" value={password} onChange={ (e) => updatePassword(e.target.value)} />
 							{submitted && !password &&
-								<div className="uk-text-danger uk-text-small">El campo contraseña es requerido</div>
+								<div className="uk-text-danger uk-text-small">The password field is required.</div>
 							}
 						</div>
 					</div>
 
 					<div className="uk-margin-top">
-					<button className="uk-button uk-button-primary uk-display-block uk-margin-auto uk-border-rounded">{ loading ? <div data-uk-spinner="ratio: 0.5"></div> : 'Registrate'}</button>
+					<button className="uk-button uk-button-primary uk-display-block uk-margin-auto uk-border-rounded">{ loading ? <div data-uk-spinner="ratio: 0.5"></div> : 'Register'}</button>
 					</div>
  						<div className="uk-text-small uk-text-center uk-margin">
-						Ya tienes una cuenta? <Link to="/login">Logueate</Link>
+						 Do you already have an account? <Link to="/login">Login</Link>
 						</div>
 				</form>
 				{/* <Link to="/privacy" className="uk-position-bottom-center">Term of use. Privacy policy</Link> */}
@@ -130,7 +130,7 @@ export { Register }
 //     return(
 //       <Auth>
 // 				<div className="uk-flex-1">
-// 					<h1 className="uk-h2 uk-text-uppercase uk-text-bold uk-text-center uk-margin-t uk-margin-remove-bottom">Unidad requets</h1>
+// 					<h1 className="uk-h2 uk-text-uppercase uk-text-bold uk-text-center uk-margin-t uk-margin-remove-bottom">Unicda requests</h1>
 // 					<h3 className="uk-h6 uk-text-center uk-text-muted uk-margin-small-top">Please login to your account.</h3>
 // 					<form className="ur-form-login uk-margin-auto" name="form-register" onSubmit={this.handleSubmit}>
 // 						<div className="uk-margin">

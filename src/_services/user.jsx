@@ -23,5 +23,5 @@ const logout = () => {
 export {
   setRegister,
   setLogin,
-  logout
+  logout,
 }
